@@ -1,0 +1,17 @@
+{
+  "name": "geda-budget-app",
+  "version": "0.1.0",
+  "description": "A budget tracking application with transaction import and auto-categorization",
+  "scripts": {
+    "start-api": "python run.py",
+    "start-frontend": "cd frontend && npm start",
+    "start": "concurrently \"npm run start-api\" \"npm run start-frontend\"",
+    "install-all": "pip install -r requirements.txt && cd frontend && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

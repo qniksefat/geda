@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #F7F9FC;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1A9CB0;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0B6475;
+}
+
+/* Utility classes */
+.positive-amount {
+  color: #3AE374;
+  font-weight: 600;
+}
+
+.negative-amount {
+  color: #E83A3A;
+  font-weight: 600;
+}
+
+.dropzone {
+  padding: 20px;
+  border: 2px dashed #1A9CB0;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  background-color: rgba(26, 156, 176, 0.05);
+  transition: all 0.3s ease;
+}
+
+.dropzone:hover {
+  background-color: rgba(26, 156, 176, 0.1);
+}
+
+.dropzone-active {
+  border-color: #3AE374;
+  background-color: rgba(58, 227, 116, 0.1);
+}
