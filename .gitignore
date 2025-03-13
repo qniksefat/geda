@@ -58,4 +58,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # Sample Credit CIBC
-sample-*.pdf 
+sample-*.pdf
+sample-credit-cibc.pdf 
