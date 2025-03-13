@@ -137,6 +137,133 @@ python test_csv_import.py
 - Monthly spending trends
 - Category analysis with visualizations
 
+## Architecture
+
+### System Overview
+
+```mermaid
+graph TB
+    subgraph Frontend
+        UI[React UI]
+        Context[Context API]
+        Components[React Components]
+    end
+
+    subgraph Backend
+        API[FastAPI Backend]
+        Core[Core Services]
+        DB[(SQLite Database)]
+        Parser[File Parsers]
+    end
+
+    UI --> API
+    UI --> Context
+    Context --> Components
+    API --> Core
+    Core --> DB
+    API --> Parser
+    Parser --> Core
+```
+
+### Data Flow
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant F as Frontend
+    participant A as API
+    participant P as Parser
+    participant C as Core Service
+    participant D as Database
+
+    U->>F: Upload Transaction File
+    F->>A: POST /api/imports
+    A->>P: Parse File
+    P-->>A: Parsed Transactions
+    A->>C: Process Transactions
+    C->>D: Store Transactions
+    C-->>A: Transaction Results
+    A-->>F: Import Summary
+    F-->>U: Success Notification
+```
+
+### Component Architecture
+
+```mermaid
+graph LR
+    subgraph Frontend Components
+        Nav[Navigation]
+        Drop[FileDropzone]
+        TForm[TransactionForm]
+        TCard[TransactionCard]
+        Pages[Application Pages]
+    end
+
+    subgraph Backend Services
+        TS[Transaction Service]
+        CS[Category Service]
+        RS[Rule Service]
+        IS[Import Service]
+        Cat[Categorizer]
+    end
+
+    subgraph Data Models
+        T[(Transactions)]
+        C[(Categories)]
+        R[(Mapping Rules)]
+    end
+
+    Pages --> Nav
+    Pages --> Drop
+    Pages --> TForm
+    Pages --> TCard
+    
+    TS --> T
+    CS --> C
+    RS --> R
+    IS --> TS
+    Cat --> CS
+    Cat --> RS
+    TS --> Cat
+```
+
+### Parser Architecture
+
+```mermaid
+graph TB
+    subgraph Input Files
+        CSV[CSV Files]
+        PDF[PDF Statements]
+    end
+
+    subgraph Parser System
+        PF[Parser Factory]
+        BP[Base Parser]
+        
+        subgraph Bank Adapters
+            CIBC[CIBC Parser]
+            RBC[RBC Parser]
+            GEN[Generic CSV]
+        end
+    end
+
+    subgraph Output
+        Trans[Normalized Transactions]
+    end
+
+    CSV --> PF
+    PDF --> PF
+    PF --> CIBC
+    PF --> RBC
+    PF --> GEN
+    
+    CIBC --> BP
+    RBC --> BP
+    GEN --> BP
+    
+    BP --> Trans
+```
+
 ## Development
 
 ### Contributing
